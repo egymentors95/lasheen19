@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- Inherit Form View to Modify it -->
+    <record id="social_insurance_view_employee_form" model="ir.ui.view">
+        <field name="name">social.insurance.view.employee.form</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//notebook" position="inside">
+                <page string="Social Insurance" name="social_insurance">
+                    <field name="social_insurance_ids">
+                        <list editable="bottom">
+                            <field name="employee_id" column_invisible="1"/>
+                            <field name="insurance_number"/>
+                            <field name="job_title_id"/>
+                            <field name="establishment_number"/>
+                            <field name="insurance_office_id"/>
+                            <field name="entry_date"/>
+                            <field name="exit_date"/>
+                            <field name="insurance_amount"/>
+                            <field name="company_portion"/>
+                            <field name="employee_portion"/>
+                            <field name="monthly_obligation"/>
+                            <field name="category_id"/>
+                            <field name="currency_id"/>
+                            <field name="company_id"/>
+                        </list>
+
+                    </field>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

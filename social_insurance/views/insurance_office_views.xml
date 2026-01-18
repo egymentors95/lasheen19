@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="insurance_office_view_tree" model="ir.ui.view">
+        <field name="name">insurance.office.view.tree</field>
+        <field name="model">insurance.office</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="insurance_office_action" model="ir.actions.act_window">
+        <field name="name">Insurance Office</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">insurance.office</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem id="menu_social_insurance_root" name="Social Insurance" parent="hr.hr_menu_configuration"
+              sequence="800"/>
+
+    <menuitem id="menu_insurance_office" name="Insurance Office" parent="social_insurance.menu_social_insurance_root"
+              action="social_insurance.insurance_office_action"
+              sequence="10"/>
+
+
+</odoo>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="insurance_category_view_tree" model="ir.ui.view">
+        <field name="name">insurance.category.view.tree</field>
+        <field name="model">insurance.category</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="insurance_category_action" model="ir.actions.act_window">
+        <field name="name">Insurance Category</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">insurance.category</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <menuitem id="menu_medical_insurance_root" name="Medical Insurance" parent="hr.hr_menu_configuration"
+              sequence="900"/>
+    <menuitem id="menu_insurance_category_root" name="Insurance Category"
+              parent="medical_insurance.menu_medical_insurance_root"
+              action="medical_insurance.insurance_category_action"
+              sequence="10"/>
+
+
+</odoo>

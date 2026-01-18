@@ -1,0 +1,25 @@
+{
+    "name": "Medical Insurance",
+    "version": "19.0.0.1.0",
+    "summary": "Medical Insurance",
+    "description": """
+Medical Insurance    """,
+    "category": "Human Resources",
+    "author": "LasheenTech",
+    "website": "",
+    "license": "LGPL-3",
+    "depends": [
+        "hr",
+    ],
+    "data": [
+        "security/ir.model.access.csv",
+        "views/insurance_category_views.xml",
+        "views/insurance_provider_views.xml",
+        "views/medical_network_views.xml",
+        "views/medical_relation_views.xml",
+        "views/hr_employee_views.xml",
+    ],
+    "installable": True,
+    "application": False,
+    "auto_install": False,
+}

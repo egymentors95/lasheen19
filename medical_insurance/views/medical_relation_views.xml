@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="medical_relation_view_tree" model="ir.ui.view">
+        <field name="name">medical.relation.view.tree</field>
+        <field name="model">medical.relation</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="medical_relation_action" model="ir.actions.act_window">
+        <field name="name">Medical Relation</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">medical.relation</field>
+        <field name="view_mode">list</field>
+    </record>
+
+
+
+    <menuitem id="menu_medical_relation_root" name="Medical Relation"
+              parent="medical_insurance.menu_medical_insurance_root"
+              action="medical_insurance.medical_relation_action"
+              sequence="40"/>
+
+
+</odoo>

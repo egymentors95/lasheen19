@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- Inherit Form View to Modify it -->
+    <record id="document_type_view_employee_form" model="ir.ui.view">
+        <field name="name">document.type.view.employee.form</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//notebook" position="inside">
+                <page string="Document Employee" name="document_employee">
+                    <field name="document_line_ids">
+                        <list editable="bottom">
+                            <field name="employee_id" column_invisible="1"/>
+                            <field name="document_type_id"/>
+                            <field name="issue_date"/>
+                            <field name="name"/>
+                            <field name="uploads" widget="many2many_binary"/>
+                        </list>
+
+                    </field>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

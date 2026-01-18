@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_insurance_category,access.insurance.category,model_insurance_category,,1,1,1,1
+access_insurance_provider,access.insurance.provider,model_insurance_provider,,1,1,1,1
+access_medical_network,access.medical.network,model_medical_network,,1,1,1,1
+access_medical_relation,access.medical.relation,model_medical_relation,,1,1,1,1
+access_medical_insurance,access.medical.insurance,model_medical_insurance,,1,1,1,1
+access_family_insurance,access.family.insurance,model_family_insurance,,1,1,1,1
+

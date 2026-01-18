@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="insurance_provider_view_tree" model="ir.ui.view">
+        <field name="name">insurance.provider.view.tree</field>
+        <field name="model">insurance.provider</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="insurance_provider_action" model="ir.actions.act_window">
+        <field name="name">Insurance Provider</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">insurance.provider</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <menuitem id="menu_insurance_provider_root" name="Insurance Provider"
+              parent="medical_insurance.menu_medical_insurance_root"
+              action="medical_insurance.insurance_provider_action"
+              sequence="20"/>
+
+
+</odoo>

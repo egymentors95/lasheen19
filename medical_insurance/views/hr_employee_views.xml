@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- Inherit Form View to Modify it -->
+    <record id="family_insurance_view_employee_form" model="ir.ui.view">
+        <field name="name">family.insurance.view.employee.form</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//notebook" position="inside">
+                <page string="Medical Insurance" name="medical_insurance">
+                    <field name="medical_insurance_ids">
+                        <list editable="bottom">
+                            <field name="employee_id" column_invisible="1"/>
+                            <field name="insurance_number"/>
+                            <field name="insurance_provider_id"/>
+                            <field name="medical_network_id"/>
+                            <field name="insurance_category_id"/>
+                            <field name="insurance_start_date"/>
+                            <field name="insurance_end_date"/>
+                            <field name="company_share"/>
+                            <field name="employee_share"/>
+                            <field name="monthly_contribution"/>
+                            <field name="company_discount"/>
+                        </list>
+                    </field>
+                     <field name="family_insurance_ids">
+                        <list editable="bottom">
+                            <field name="employee_id" column_invisible="1"/>
+                            <field name="family_member_name"/>
+                            <field name="relation_id"/>
+                            <field name="insurance_number"/>
+                            <field name="insurance_provider_id"/>
+                            <field name="medical_network_id"/>
+                            <field name="insurance_category_id"/>
+                            <field name="insurance_start_date"/>
+                            <field name="insurance_end_date"/>
+                            <field name="company_share"/>
+                            <field name="employee_share"/>
+                            <field name="monthly_contribution"/>
+                            <field name="company_discount"/>
+                        </list>
+                    </field>
+
+
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="document_report_view_view_tree" model="ir.ui.view">
+        <field name="name">document.report.view.view.tree</field>
+        <field name="model">document.report.view</field>
+        <field name="arch" type="xml">
+            <list create="0">
+                <field name="employee_id"/>
+                <field name="department_id"/>
+                <field name="job_id"/>
+                <field name="company_id"/>
+                <field name="document_type"/>
+                <field name="issue_date"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="document_report_action" model="ir.actions.act_window">
+        <field name="name">Document Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">document.report.view</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <menuitem id="document_report_wizard_menuitem" name="Employee Document Views"
+              parent="employee_document.employee_document_wizard_menuitem_root"
+              action="employee_document.document_report_action"
+              sequence="20"/>
+
+
+</odoo>

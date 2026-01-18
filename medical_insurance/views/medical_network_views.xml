@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="medical_network_view_tree" model="ir.ui.view">
+        <field name="name">medical.network.view.tree</field>
+        <field name="model">medical.network</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="medical_network_action" model="ir.actions.act_window">
+        <field name="name">Medical Network</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">medical.network</field>
+        <field name="view_mode">list</field>
+    </record>
+
+
+    <menuitem id="menu_medical_network_root" name="Medical Network"
+              parent="medical_insurance.menu_medical_insurance_root"
+              action="medical_insurance.medical_network_action"
+              sequence="30"/>
+
+
+</odoo>
