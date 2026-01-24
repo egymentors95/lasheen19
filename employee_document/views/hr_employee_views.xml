@@ -16,7 +16,14 @@
                             <field name="document_type_id"/>
                             <field name="issue_date"/>
                             <field name="name"/>
-                            <field name="uploads" widget="many2many_binary"/>
+                            <button name="action_view_uploads"
+                                    type="object"
+                                    string="Uploads"
+                                    icon="fa-paperclip"
+                                    class="oe_stat_button"/>
+                            <field name="attachments_count"/>
+                            <field name="true_false"/>
+
                         </list>
 
                     </field>

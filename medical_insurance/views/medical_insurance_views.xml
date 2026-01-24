@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="medical_insurance_view_tree" model="ir.ui.view">
+        <field name="name">medical.insurance.view.tree</field>
+        <field name="model">medical.insurance</field>
+        <field name="arch" type="xml">
+            <list create="0">
+                <field name="employee_id"/>
+                <field name="department_id"/>
+                <field name="job_id"/>
+                <field name="company_id"/>
+                <field name="registration_number"/>
+                <field name="insurance_number"/>
+                <field name="insurance_provider_id"/>
+                <field name="medical_network_id"/>
+                <field name="insurance_category_id"/>
+                <field name="insurance_start_date"/>
+                <field name="insurance_end_date"/>
+                <field name="company_share"/>
+                <field name="employee_share"/>
+                <field name="monthly_contribution"/>
+                <field name="company_discount"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="medical_insurance_search" model="ir.ui.view">
+        <field name="name">medical.insurance.search</field>
+        <field name="model">medical.insurance</field>
+        <field name="arch" type="xml">
+            <search string="Document Type Lines">
+                <!-- Fields for search -->
+                <field name="employee_id"/>
+                <field name="department_id"/>
+                <field name="job_id"/>
+                <field name="company_id"/>
+                <field name="registration_number"/>
+
+                <!-- Group by filters -->
+                <group>
+                    <filter name="group_employee" string="Employee" domain="[]" context="{'group_by':'employee_id'}"/>
+                    <filter name="group_department" string="Department" domain="[]" context="{'group_by':'department_id'}"/>
+                    <filter name="group_job" string="Job" domain="[]" context="{'group_by':'job_id'}"/>
+                    <filter name="group_company" string="Company" domain="[]" context="{'group_by':'company_id'}"/>
+                    <filter name="group_registration_number" string="Reference" domain="[]" context="{'group_by':'registration_number'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="employee_medical_insurance_action" model="ir.actions.act_window">
+        <field name="name">Employee Medical Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">medical.insurance</field>
+        <field name="view_mode">list</field>
+    </record>
+
+
+    <menuitem id="employee_medical_insurance_menuitem_root" name="Medical Insurance"
+              parent="hr.hr_menu_hr_reports"
+              sequence="400"/>
+
+
+    <menuitem id="document_report_wizard_menuitem" name="Medical Insurance Report"
+              parent="medical_insurance.employee_medical_insurance_menuitem_root"
+              action="medical_insurance.employee_medical_insurance_action"
+              sequence="20"/>
+
+
+</odoo>
