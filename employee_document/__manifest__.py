@@ -17,6 +17,7 @@
         "security/ir.model.access.csv",
         "views/document_type_views.xml",
         "views/hr_employee_views.xml",
+        "wizard/employee_document_wizard_views.xml",
         "views/document_report_view.xml",
         "reports/employee_document_template_views.xml",
         "reports/action_report_views.xml",

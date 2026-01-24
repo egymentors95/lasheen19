@@ -10,12 +10,6 @@
 
             <xpath expr="//notebook" position="inside">
                 <page string="Medical Insurance" name="medical_insurance">
-                    <div>
-                        <h3>
-                            <strong>Employee Medical Insurance</strong>
-                        </h3>
-                    </div>
-
                     <field name="medical_insurance_ids">
                         <list editable="bottom">
                             <field name="employee_id" column_invisible="1"/>
@@ -31,12 +25,7 @@
                             <field name="company_discount"/>
                         </list>
                     </field>
-                    <div>
-                        <h3>
-                            <strong>Family Medical Insurance</strong>
-                        </h3>
-                    </div>
-                    <field name="family_insurance_ids">
+                     <field name="family_insurance_ids">
                         <list editable="bottom">
                             <field name="employee_id" column_invisible="1"/>
                             <field name="family_member_name"/>
@@ -53,26 +42,6 @@
                             <field name="company_discount"/>
                         </list>
                     </field>
-
-                    <div class="row">
-                        <div class="col-4">
-                            <label for="total_company_share"/>
-                            <br/>
-                            <field name="total_company_share"/>
-                        </div>
-                        <div class="col-4">
-                            <label for="total_employee_share"/>
-                            <br/>
-                            <field name="total_employee_share"/>
-
-                        </div>
-                        <div class="col-4">
-                            <label for="total_monthly_contribution"/>
-                            <br/>
-                            <field name="total_monthly_contribution"/>
-
-                        </div>
-                    </div>
 
 
                 </page>

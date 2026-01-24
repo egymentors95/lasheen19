@@ -1,5 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_document_type,access.document.type,model_document_type,,1,1,1,1
 access_document_type_line,access.document.type.line,model_document_type_line,,1,1,1,1
+access_employee_document_wizard,access.employee.document.wizard,model_employee_document_wizard,,1,1,1,1
+access_document_report_view,access.document.report.view,model_document_report_view,,1,1,1,1
 
 
