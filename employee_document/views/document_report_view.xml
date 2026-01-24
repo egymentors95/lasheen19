@@ -1,31 +1,63 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
-    <record id="document_report_view_view_tree" model="ir.ui.view">
-        <field name="name">document.report.view.view.tree</field>
-        <field name="model">document.report.view</field>
+    <record id="document_type_view_view_tree" model="ir.ui.view">
+        <field name="name">document.type.view.view.tree</field>
+        <field name="model">document.type.line</field>
         <field name="arch" type="xml">
             <list create="0">
                 <field name="employee_id"/>
                 <field name="department_id"/>
                 <field name="job_id"/>
                 <field name="company_id"/>
-                <field name="document_type"/>
+                <field name="document_type_id"/>
                 <field name="issue_date"/>
+                <field name="true_false"/>
             </list>
         </field>
     </record>
 
-    <record id="document_report_action" model="ir.actions.act_window">
-        <field name="name">Document Report</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">document.report.view</field>
-        <field name="view_mode">list</field>
+    <record id="view_document_type_line_search" model="ir.ui.view">
+        <field name="name">document.type.line.search</field>
+        <field name="model">document.type.line</field>
+        <field name="arch" type="xml">
+            <search string="Document Type Lines">
+                <!-- Fields for search -->
+                <field name="employee_id"/>
+                <field name="department_id"/>
+                <field name="job_id"/>
+                <field name="company_id"/>
+                <field name="document_type_id"/>
+
+                <!-- Group by filters -->
+                <group>
+                    <filter name="group_employee" string="Employee" domain="[]" context="{'group_by':'employee_id'}"/>
+                    <filter name="group_department" string="Department" domain="[]" context="{'group_by':'department_id'}"/>
+                    <filter name="group_job" string="Job" domain="[]" context="{'group_by':'job_id'}"/>
+                    <filter name="group_company" string="Company" domain="[]" context="{'group_by':'company_id'}"/>
+                    <filter name="group_document_type" string="Document Type" domain="[]" context="{'group_by':'document_type_id'}"/>
+                </group>
+            </search>
+        </field>
     </record>
 
-    <menuitem id="document_report_wizard_menuitem" name="Employee Document Views"
-              parent="employee_document.employee_document_wizard_menuitem_root"
-              action="employee_document.document_report_action"
+    <record id="document_type_line_action" model="ir.actions.act_window">
+        <field name="name">Document Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">document.type.line</field>
+        <field name="view_mode">list</field>
+        <field name="search_view_id" ref="view_document_type_line_search"/>
+    </record>
+
+
+    <menuitem id="employee_document_menuitem_root" name="Employee Document"
+              parent="hr.hr_menu_hr_reports"
+              sequence="100"/>
+
+
+    <menuitem id="document_report_wizard_menuitem" name="Employee Document Report"
+              parent="employee_document.employee_document_menuitem_root"
+              action="employee_document.document_type_line_action"
               sequence="20"/>
 
 

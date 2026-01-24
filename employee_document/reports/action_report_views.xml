@@ -3,11 +3,39 @@
 
     <record id="employee_document_pdf_report" model="ir.actions.report">
         <field name="name">Employee Documents (PDF)</field>
-        <field name="model">employee.document.wizard</field>
+        <field name="model">document.type.line</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">employee_document.employee_document_pdf</field>
         <field name="print_report_name">'Employee Documents'</field>
     </record>
+
+    <!-- تعريف السيرفر اكشن -->
+    <record id="action_print_employee_documents" model="ir.actions.server">
+        <field name="name">Print Employee Documents PDF</field>
+        <field name="model_id" ref="employee_document.model_document_type_line"/>
+        <field name="binding_model_id" ref="employee_document.model_document_type_line"/>
+        <field name="state">code</field>
+        <field name="code">
+            action = {
+            'type': 'ir.actions.report',
+            'report_name': 'employee_document.employee_document_pdf',
+            'report_type': 'qweb-pdf',
+            'name': 'Employee Documents',
+            'res_ids': [record.id for record in records],
+            }
+        </field>
+    </record>
+
+    <record id="action_print_employee_documents_excel" model="ir.actions.server">
+        <field name="name">Print Employee Documents Excel</field>
+        <field name="model_id" ref="employee_document.model_document_type_line"/>
+        <field name="binding_model_id" ref="employee_document.model_document_type_line"/>
+        <field name="state">code</field>
+        <field name="code">
+action = records.generate_excel_report()
+        </field>
+    </record>
+
 
 
 </odoo>

@@ -3,5 +3,3 @@ access_job_title,access.job.title,model_job_title,,1,1,1,1
 access_insurance_office,access.insurance.office,model_insurance_office,,1,1,1,1
 access_social_category,access.social.category,model_social_category,,1,1,1,1
 access_social_insurance,access.social.insurance,model_social_insurance,,1,1,1,1
-access_social_insurance_wizard,access.social.insurance.wizard,model_social_insurance_wizard,,1,1,1,1
-access_social_report_view,access.social.report.view,model_social_report_view,,1,1,1,1

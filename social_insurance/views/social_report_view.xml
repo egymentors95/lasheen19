@@ -3,7 +3,7 @@
 
     <record id="social_report_view_view_tree" model="ir.ui.view">
         <field name="name">social.report.view.view.tree</field>
-        <field name="model">social.report.view</field>
+        <field name="model">social.insurance</field>
         <field name="arch" type="xml">
             <list create="0">
                 <field name="employee_id"/>
@@ -25,18 +25,56 @@
         </field>
     </record>
 
+
+    <record id="view_social_insurance_line_search" model="ir.ui.view">
+        <field name="name">social.insurance.line.search</field>
+        <field name="model">social.insurance</field>
+        <field name="arch" type="xml">
+            <search string="Document Type Lines">
+                <!-- Fields for search -->
+                <field name="employee_id"/>
+                <field name="department_id"/>
+                <field name="job_id"/>
+                <field name="company_id"/>
+                <field name="job_title_id"/>
+                <field name="insurance_office_id"/>
+                <field name="category_id"/>
+
+                <!-- Group by filters -->
+                <group>
+                    <filter name="group_employee" string="Employee" domain="[]" context="{'group_by':'employee_id'}"/>
+                    <filter name="group_department" string="Department" domain="[]"
+                            context="{'group_by':'department_id'}"/>
+                    <filter name="group_job" string="Job" domain="[]" context="{'group_by':'job_id'}"/>
+                    <filter name="group_company" string="Company" domain="[]" context="{'group_by':'company_id'}"/>
+                    <filter name="group_job_title_id" string="Job Title" domain="[]"
+                            context="{'group_by':'job_title_id'}"/>
+                    <filter name="group_insurance_office_id" string="Insurance Office" domain="[]"
+                            context="{'group_by':'insurance_office_id'}"/>
+                    <filter name="group_category_id" string="Category" domain="[]"
+                            context="{'group_by':'category_id'}"/>
+
+                </group>
+            </search>
+        </field>
+    </record>
+
     <record id="social_report_view_action" model="ir.actions.act_window">
         <field name="name">Social Report</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">social.report.view</field>
+        <field name="res_model">social.insurance</field>
         <field name="view_mode">list</field>
     </record>
 
-    <menuitem id="social_report_wizard_menuitem" name="Social Insurance View"
-              parent="social_insurance.social_insurance_wizard_menuitem_root"
-              action="social_insurance.social_report_view_action"
+    <menuitem id="social_insurance_menuitem_root" name="Social Insurance"
+              parent="hr.hr_menu_hr_reports"
               sequence="100"/>
 
+
+    <menuitem id="social_report_wizard_menuitem" name="Social Insurance Report"
+              parent="social_insurance.social_insurance_menuitem_root"
+              action="social_insurance.social_report_view_action"
+              sequence="100"/>
 
 
 </odoo>

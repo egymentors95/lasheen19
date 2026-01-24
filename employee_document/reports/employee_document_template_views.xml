@@ -17,14 +17,26 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <t t-foreach="docs.get_report_data()['combined_data']" t-as="line">
+                            <t t-foreach="docs" t-as="line">
                                 <tr>
-                                    <td style="border: 1px solid #000; padding: 5px;"><t t-esc="line['employee']"/></td>
-                                    <td style="border: 1px solid #000; padding: 5px;"><t t-esc="line['department']"/></td>
-                                    <td style="border: 1px solid #000; padding: 5px;"><t t-esc="line['job_position']"/></td>
-                                    <td style="border: 1px solid #000; padding: 5px;"><t t-esc="line['company']"/></td>
-                                    <td style="border: 1px solid #000; padding: 5px;"><t t-esc="line['document_type']"/></td>
-                                    <td style="border: 1px solid #000; padding: 5px;"><t t-esc="line['issue_date']"/></td>
+                                    <td style="border: 1px solid #000; padding: 5px;">
+                                        <t t-esc="line.employee_id.name or ''"/>
+                                    </td>
+                                    <td style="border: 1px solid #000; padding: 5px;">
+                                        <t t-esc="line.department_id.name or ''"/>
+                                    </td>
+                                    <td style="border: 1px solid #000; padding: 5px;">
+                                        <t t-esc="line.job_id.name or ''"/>
+                                    </td>
+                                    <td style="border: 1px solid #000; padding: 5px;">
+                                        <t t-esc="line.company_id.name or ''"/>
+                                    </td>
+                                    <td style="border: 1px solid #000; padding: 5px;">
+                                        <t t-esc="line.document_type_id.name or ''"/>
+                                    </td>
+                                    <td style="border: 1px solid #000; padding: 5px;">
+                                        <t t-esc="line.issue_date or ''"/>
+                                    </td>
                                 </tr>
                             </t>
                         </tbody>
