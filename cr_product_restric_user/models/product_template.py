@@ -8,59 +8,85 @@ class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     @api.model
-    def _search(self, args, offset=0, limit=None, order=None):
-        """Overriding the _search method to modify how products are searched"""
+    def _search(
+        self,
+        domain,
+        offset=0,
+        limit=None,
+        order=None,
+        count=False,
+        bypass_access=False,
+    ):
         user = self.env.user
         restricted_group = self.env.ref(
-            "cr_product_restric_user.cr_product_restriction_on_user"
+            "cr_product_restric_user.cr_product_restriction_on_user",
+            raise_if_not_found=False,
         )
 
-        args = list(args or [])
-
-        if restricted_group in user.group_ids:
+        if restricted_group and restricted_group in user.group_ids:
             if user.cr_restriction_on == "product":
-                product_ids = user.cr_product_template_ids.ids
-                if product_ids:
-                    args = AND([args, [("id", "in", product_ids)]])
+                ids = user.cr_product_template_ids.ids
+                if ids:
+                    domain = AND([domain, [("id", "in", ids)]])
                 else:
-                    return []
+                    return 0 if count else []
 
             elif user.cr_restriction_on == "category":
-                category_ids = user.cr_product_category_ids.ids
-                if category_ids:
-                    args = AND([args, [("categ_id", "in", category_ids)]])
+                ids = user.cr_product_category_ids.ids
+                if ids:
+                    domain = AND([domain, [("categ_id", "in", ids)]])
                 else:
-                    return []
+                    return 0 if count else []
 
-        return super()._search(args, offset=offset, limit=limit, order=order)
+        return super()._search(
+            domain,
+            offset=offset,
+            limit=limit,
+            order=order,
+            count=count,
+            bypass_access=bypass_access,
+        )
 
 
 class Product(models.Model):
     _inherit = "product.product"
 
     @api.model
-    def _search(self, args, offset=0, limit=None, order=None):
-        """Overriding the _search method to modify how products are searched"""
+    def _search(
+        self,
+        domain,
+        offset=0,
+        limit=None,
+        order=None,
+        count=False,
+        bypass_access=False,
+    ):
         user = self.env.user
         restricted_group = self.env.ref(
-            "cr_product_restric_user.cr_product_restriction_on_user"
+            "cr_product_restric_user.cr_product_restriction_on_user",
+            raise_if_not_found=False,
         )
 
-        args = list(args or [])
-
-        if restricted_group in user.group_ids:
+        if restricted_group and restricted_group in user.group_ids:
             if user.cr_restriction_on == "product":
-                template_ids = user.cr_product_template_ids.ids
-                if template_ids:
-                    args = AND([args, [("product_tmpl_id", "in", template_ids)]])
+                ids = user.cr_product_template_ids.ids
+                if ids:
+                    domain = AND([domain, [("product_tmpl_id", "in", ids)]])
                 else:
-                    return []
+                    return 0 if count else []
 
             elif user.cr_restriction_on == "category":
-                category_ids = user.cr_product_category_ids.ids
-                if category_ids:
-                    args = AND([args, [("categ_id", "in", category_ids)]])
+                ids = user.cr_product_category_ids.ids
+                if ids:
+                    domain = AND([domain, [("categ_id", "in", ids)]])
                 else:
-                    return []
+                    return 0 if count else []
 
-        return super()._search(args, offset=offset, limit=limit, order=order)
+        return super()._search(
+            domain,
+            offset=offset,
+            limit=limit,
+            order=order,
+            count=count,
+            bypass_access=bypass_access,
+        )
