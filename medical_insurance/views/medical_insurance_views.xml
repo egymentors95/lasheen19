@@ -37,8 +37,8 @@
                 <field name="job_id"/>
                 <field name="company_id"/>
                 <field name="registration_number"/>
-                <filter name="in_active" string="True" domain="[('in_active_true', '=', True)]"/>
-                <filter name="in_active" string="False" domain="[('in_active_true', '=', False)]"/>
+                <filter name="in_active" string="True" domain="[('in_active', '=', True)]"/>
+                <filter name="in_active" string="False" domain="[('in_active', '=', False)]"/>
 
                 <!-- Group by filters -->
                 <group>
