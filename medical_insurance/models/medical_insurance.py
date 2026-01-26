@@ -10,7 +10,7 @@ class MedicalInsurance(models.Model):
     employee_id = fields.Many2one(comodel_name='hr.employee', string='employee')
     department_id = fields.Many2one(comodel_name='hr.department', related='employee_id.department_id', store=True)
     job_id = fields.Many2one(comodel_name='hr.job', related='employee_id.job_id', store=True)
-    company_id = fields.Many2one(comodel_name='res.company', realted='employee_id.company_id', store=True)
+    company_id = fields.Many2one(comodel_name='res.company', related='employee_id.company_id', store=True)
     registration_number = fields.Char(string='Reference', related='employee_id.registration_number', store=True)
     insurance_number = fields.Char(string='Insurance Number')
     insurance_provider_id = fields.Many2one(comodel_name='insurance.provider', string='Insurance Provider')
@@ -22,9 +22,16 @@ class MedicalInsurance(models.Model):
     employee_share = fields.Float(string='Employee Share')
     monthly_contribution = fields.Float(string='Monthly Contribution', compute='_get_monthly_contribution', store=True)
     company_discount = fields.Float()
+    in_active = fields.Boolean(string='Active/In Active', compute='_get_in_active', store=True)
 
     excel_file = fields.Binary('Excel File')
     excel_filename = fields.Char('Excel Filename')
+
+    @api.depends('insurance_end_date')
+    def _get_in_active(self):
+        for rec in self:
+            today = fields.Date.context_today(rec)
+            rec.in_active = not rec.insurance_end_date or rec.insurance_end_date > today
 
     @api.depends('company_share', 'employee_share')
     def _get_monthly_contribution(self):
@@ -52,7 +59,8 @@ class MedicalInsurance(models.Model):
             ('Company Share', 15),
             ('Employee Share', 15),
             ('Monthly Contribution', 15),
-            ('Company Discount', 15)
+            ('Company Discount', 15),
+            ('Active/In Active', 15),
         ]
         for col, (header, width) in enumerate(columns):
             sheet.set_column(col, col, width)
@@ -80,6 +88,7 @@ class MedicalInsurance(models.Model):
             sheet.write(row, 11, record.employee_share or 0, cell_format)
             sheet.write(row, 12, record.monthly_contribution or 0, cell_format)
             sheet.write(row, 13, record.company_discount or 0, cell_format)
+            sheet.write(row, 14, record.in_active or 0, cell_format)
 
         workbook.close()
         output.seek(0)

@@ -10,7 +10,7 @@ class DocumentTypeLine(models.Model):
     employee_id = fields.Many2one(comodel_name='hr.employee')
     department_id = fields.Many2one(comodel_name='hr.department', related='employee_id.department_id', store=True)
     job_id = fields.Many2one(comodel_name='hr.job', related='employee_id.job_id', store=True)
-    company_id = fields.Many2one(comodel_name='res.company', realted='employee_id.company_id', store=True)
+    company_id = fields.Many2one(comodel_name='res.company', related='employee_id.company_id', store=True)
     document_type_id = fields.Many2one(comodel_name='document.type', required=True)
     issue_date = fields.Date(required=True)
     name = fields.Char(string="Description")

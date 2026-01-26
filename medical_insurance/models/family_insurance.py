@@ -11,7 +11,7 @@ class FamilyInsurance(models.Model):
     employee_id = fields.Many2one(comodel_name='hr.employee', string='employee')
     department_id = fields.Many2one(comodel_name='hr.department', related='employee_id.department_id', store=True)
     job_id = fields.Many2one(comodel_name='hr.job', related='employee_id.job_id', store=True)
-    company_id = fields.Many2one(comodel_name='res.company', realted='employee_id.company_id', store=True)
+    company_id = fields.Many2one(comodel_name='res.company', related='employee_id.company_id', store=True)
     registration_number = fields.Char(string='Reference', related='employee_id.registration_number', store=True)
     family_member_name = fields.Char()
     relation_id = fields.Many2one(comodel_name='medical.relation', string='Relation')
@@ -27,6 +27,14 @@ class FamilyInsurance(models.Model):
     company_discount = fields.Float()
     excel_file = fields.Binary(string='Excel File')
     excel_filename = fields.Char(string='Excel Filename')
+    in_active = fields.Boolean(string='Active/In Active', compute='_get_in_active', store=True)
+
+    @api.depends('insurance_end_date')
+    def _get_in_active(self):
+        for rec in self:
+            today = fields.Date.context_today(rec)
+            rec.in_active = not rec.insurance_end_date or rec.insurance_end_date > today
+
 
     @api.depends('company_share', 'employee_share')
     def _get_monthly_contribution(self):
@@ -66,7 +74,8 @@ class FamilyInsurance(models.Model):
             'Company Share',
             'Employee Share',
             'Monthly Contribution',
-            'Company Discount'
+            'Company Discount',
+            'Active/In Active',
         ]
 
         # عرض الأعمدة
@@ -97,6 +106,7 @@ class FamilyInsurance(models.Model):
             sheet.write(row,14, rec.employee_share or 0, cell_format)
             sheet.write(row,15, rec.monthly_contribution or 0, cell_format)
             sheet.write(row,16, rec.company_discount or 0, cell_format)
+            sheet.write(row,17, rec.in_active or 0, cell_format)
             row += 1
 
         workbook.close()

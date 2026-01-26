@@ -13,16 +13,16 @@
                     <field name="document_line_ids">
                         <list editable="bottom">
                             <field name="employee_id" column_invisible="1"/>
-                            <field name="document_type_id"/>
-                            <field name="issue_date"/>
-                            <field name="name"/>
+                            <field name="document_type_id" optional="show"/>
+                            <field name="issue_date" optional="show"/>
+                            <field name="name" optional="show"/>
                             <button name="action_view_uploads"
                                     type="object"
                                     string="Uploads"
                                     icon="fa-paperclip"
                                     class="oe_stat_button"/>
-                            <field name="attachments_count"/>
-                            <field name="true_false"/>
+                            <field name="attachments_count" optional="show"/>
+                            <field name="true_false" optional="show"/>
 
                         </list>
 

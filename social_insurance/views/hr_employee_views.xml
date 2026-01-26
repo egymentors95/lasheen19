@@ -13,19 +13,20 @@
                     <field name="social_insurance_ids">
                         <list editable="bottom">
                             <field name="employee_id" column_invisible="1"/>
-                            <field name="insurance_number"/>
-                            <field name="job_title_id"/>
-                            <field name="establishment_number"/>
-                            <field name="insurance_office_id"/>
-                            <field name="entry_date"/>
-                            <field name="exit_date"/>
-                            <field name="insurance_amount"/>
-                            <field name="company_portion"/>
-                            <field name="employee_portion"/>
-                            <field name="monthly_obligation"/>
-                            <field name="category_id"/>
-                            <field name="currency_id"/>
-                            <field name="company_id"/>
+                            <field name="insurance_number" optional="show"/>
+                            <field name="job_title_id" optional="show"/>
+                            <field name="establishment_number" optional="show"/>
+                            <field name="insurance_office_id" optional="show"/>
+                            <field name="entry_date" optional="show"/>
+                            <field name="exit_date" optional="show"/>
+                            <field name="insurance_amount" optional="show"/>
+                            <field name="company_portion" optional="show"/>
+                            <field name="employee_portion" optional="show"/>
+                            <field name="monthly_obligation" optional="show"/>
+                            <field name="category_id" optional="show"/>
+                            <field name="currency_id" optional="show"/>
+                            <field name="company_id" optional="show"/>
+                            <field name="in_active" optional="show"/>
                         </list>
 
                     </field>

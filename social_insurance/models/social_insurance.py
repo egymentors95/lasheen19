@@ -20,6 +20,7 @@ class SocialInsurance(models.Model):
     establishment_number = fields.Char(string='Establishment Number')
     entry_date = fields.Date(string='Entry Date')
     exit_date = fields.Date(string='Exit Date')
+    in_active = fields.Boolean(string='Active/In Active', compute='_get_in_active', store=True)
     insurance_amount = fields.Monetary(string='Insurance Amount')
     company_portion = fields.Monetary(string='Company Portion')
     employee_portion = fields.Monetary(string='Employee Portion')
@@ -28,6 +29,12 @@ class SocialInsurance(models.Model):
     currency_id = fields.Many2one(string="Currency", related='company_id.currency_id', readonly=True)
     excel_file = fields.Binary('Excel File')
     excel_filename = fields.Char('Excel Filename')
+
+    @api.depends('exit_date')
+    def _get_in_active(self):
+        for rec in self:
+            today = fields.Date.context_today(rec)
+            rec.in_active = not rec.exit_date or rec.exit_date > today
 
     @api.depends('company_portion', 'employee_portion')
     def _compute_monthly_obligation(self):
@@ -58,7 +65,7 @@ class SocialInsurance(models.Model):
         headers = [
             'Employee', 'Department', 'Job Position', 'Company', 'Job Title', 'Insurance Office', 'Category',
             'Insurance Number', 'Establishment Number', 'Entry Date', 'Exit Date',
-            'Insurance Amount', 'Company Portion', 'Employee Portion', 'Monthly Obligation'
+            'Insurance Amount', 'Company Portion', 'Employee Portion', 'Monthly Obligation', 'Active/In Active'
         ]
         for col, header in enumerate(headers):
             sheet.write(0, col, header, header_format)
@@ -81,6 +88,7 @@ class SocialInsurance(models.Model):
             sheet.write(row, 12, line.company_portion or 0, cell_format)
             sheet.write(row, 13, line.employee_portion or 0, cell_format)
             sheet.write(row, 14, line.monthly_obligation or 0, cell_format)
+            sheet.write(row, 15, line.in_active or 0, cell_format)
 
         workbook.close()
         output.seek(0)
