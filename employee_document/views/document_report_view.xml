@@ -6,13 +6,13 @@
         <field name="model">document.type.line</field>
         <field name="arch" type="xml">
             <list create="0">
-                <field name="employee_id"/>
-                <field name="department_id"/>
-                <field name="job_id"/>
-                <field name="company_id"/>
-                <field name="document_type_id"/>
-                <field name="issue_date"/>
-                <field name="true_false"/>
+                <field name="employee_id" optional="show"/>
+                <field name="department_id" optional="show"/>
+                <field name="job_id" optional="show"/>
+                <field name="company_id" optional="show"/>
+                <field name="document_type_id" optional="show"/>
+                <field name="issue_date" optional="show"/>
+                <field name="true_false" optional="show"/>
             </list>
         </field>
     </record>

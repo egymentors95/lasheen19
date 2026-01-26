@@ -6,23 +6,24 @@
         <field name="model">family.insurance</field>
         <field name="arch" type="xml">
             <list create="0">
-                <field name="employee_id"/>
-                <field name="department_id"/>
-                <field name="job_id"/>
-                <field name="company_id"/>
-                <field name="registration_number"/>
-                <field name="family_member_name"/>
-                <field name="relation_id"/>
-                <field name="insurance_number"/>
-                <field name="insurance_provider_id"/>
-                <field name="medical_network_id"/>
-                <field name="insurance_category_id"/>
-                <field name="insurance_start_date"/>
-                <field name="insurance_end_date"/>
-                <field name="company_share"/>
-                <field name="employee_share"/>
-                <field name="monthly_contribution"/>
-                <field name="company_discount"/>
+                <field name="employee_id" optional="show"/>
+                <field name="department_id" optional="show"/>
+                <field name="job_id" optional="show"/>
+                <field name="company_id" optional="show"/>
+                <field name="registration_number" optional="show"/>
+                <field name="family_member_name" optional="show"/>
+                <field name="relation_id" optional="show"/>
+                <field name="insurance_number" optional="show"/>
+                <field name="insurance_provider_id" optional="show"/>
+                <field name="medical_network_id" optional="show"/>
+                <field name="insurance_category_id" optional="show"/>
+                <field name="insurance_start_date" optional="show"/>
+                <field name="insurance_end_date" optional="show"/>
+                <field name="company_share" optional="show"/>
+                <field name="employee_share" optional="show"/>
+                <field name="monthly_contribution" optional="show"/>
+                <field name="company_discount" optional="show"/>
+                <field name="in_active" optional="show"/>
             </list>
         </field>
     </record>
@@ -38,6 +39,9 @@
                 <field name="job_id"/>
                 <field name="company_id"/>
                 <field name="registration_number"/>
+                                <filter name="in_active_true" string="True" domain="[('in_active_true', '=', True)]"/>
+                <filter name="in_active_false" string="False" domain="[('in_active_true', '=', False)]"/>
+
 
                 <!-- Group by filters -->
                 <group>
@@ -48,6 +52,9 @@
                     <filter name="group_company" string="Company" domain="[]" context="{'group_by':'company_id'}"/>
                     <filter name="group_registration_number" string="Reference" domain="[]"
                             context="{'group_by':'registration_number'}"/>
+                                        <filter name="group_active" string="Active" domain="[]"
+                            context="{'group_by':'in_active'}"/>
+
                 </group>
             </search>
         </field>
