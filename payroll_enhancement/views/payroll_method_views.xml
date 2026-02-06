@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="payroll_method_view_tree" model="ir.ui.view">
+        <field name="name">payroll.method.view.tree</field>
+        <field name="model">payroll.method</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+
+    <record id="payroll_method_action" model="ir.actions.act_window">
+        <field name="name">Payroll Method</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">payroll.method</field>
+        <field name="view_mode">list</field>
+    </record>
+
+
+        <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="menu_payroll_method_root" name="Payroll Method" parent="hr.hr_menu_configuration"  sequence="1200"/>
+    <menuitem id="menu_payroll_method" name="Payroll Method" parent="payroll_enhancement.menu_payroll_method_root" action="payroll_enhancement.payroll_method_action"  sequence="10"/>
+
+
+
+</odoo>

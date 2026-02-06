@@ -10,6 +10,7 @@ Medical Insurance    """,
     "license": "LGPL-3",
     "depends": [
         "hr",
+        "hr_payroll",
     ],
     "data": [
         "security/ir.model.access.csv",

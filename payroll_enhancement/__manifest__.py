@@ -1,0 +1,20 @@
+{
+    "name": "Payroll Enhancement",
+    "version": "19.0.0.1.0",
+    "summary": "Enhancements for Payroll Management",
+    "description": "This module provides enhancements to the payroll management system, including additional reports and features.",
+    "author": "LasheenTech",
+    "website": "",
+    "category": "Human Resources",
+    "depends": ["hr_payroll", "hr"],
+    "data": [
+        "security/ir.model.access.csv",
+        "views/hr_employee_views.xml",
+        "views/payroll_method_views.xml",
+        "views/hr_payslip_views.xml",
+        "views/hr_payslip_line_views.xml",
+    ],
+    "installable": True,
+    "application": False,
+    "auto_install": False,
+}

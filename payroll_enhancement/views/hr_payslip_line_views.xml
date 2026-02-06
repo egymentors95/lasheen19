@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    
+    <record id="hr_payslip_line_view_tree" model="ir.ui.view">
+        <field name="name">hr.payslip.line.view.tree</field>
+        <field name="model">hr.payslip.line</field>
+        <field name="arch" type="xml">
+            <list create="false" edit="false" delete="false">
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="work_location_id"/>
+                <field name="payslip_run_id"/>
+                <field name="employer_cost"/>
+                <field name="currency_id"/>
+                <field name="basic_wage"/>
+                <field name="gross_wage"/>
+                <field name="net_wage"/>
+                <field name="total"/>
+                <field name="state_display"/>
+            </list>
+        </field>
+    </record>
+
+
+    <record id="hr_payslip_line_action" model="ir.actions.act_window">
+        <field name="name">Hr Payslip Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.payslip.line</field>
+        <field name="view_mode">list</field>
+                <field name="view_id" ref="hr_payslip_line_view_tree"/>
+
+    </record>
+
+
+    <menuitem
+            id="menu_hr_payslips_custom"
+            name="Payslip Report"
+            parent="hr_payroll.menu_hr_payroll_payslips"
+            sequence="100"
+            action="payroll_enhancement.hr_payslip_line_action"/>
+
+
+</odoo>

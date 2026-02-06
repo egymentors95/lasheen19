@@ -22,13 +22,40 @@ class SocialInsurance(models.Model):
     exit_date = fields.Date(string='Exit Date')
     in_active = fields.Boolean(string='Active/In Active', compute='_get_in_active', store=True)
     insurance_amount = fields.Monetary(string='Insurance Amount')
-    company_portion = fields.Monetary(string='Company Portion')
-    employee_portion = fields.Monetary(string='Employee Portion')
+    company_portion = fields.Monetary(string='Company Portion', compute='_get_company_portion', store=True)
+    employee_portion = fields.Monetary(string='Employee Portion', compute='_get_employee_portion', store=True)
     monthly_obligation = fields.Monetary(string='Monthly Obligation', compute='_compute_monthly_obligation', store=True)
 
     currency_id = fields.Many2one(string="Currency", related='company_id.currency_id', readonly=True)
     excel_file = fields.Binary('Excel File')
     excel_filename = fields.Char('Excel Filename')
+
+    @api.depends('insurance_amount', 'employee_id', 'employee_id.age', 'employee_id.birthday')
+    def _get_company_portion(self):
+        social_insurance_config = self.env['social.insurance.config'].search([
+            ('age_from', '<=', self.employee_id.age),
+            ('age_to', '>=', self.employee_id.age),
+        ], limit=1)
+        company_contribution = social_insurance_config.company_contribution if social_insurance_config else 0
+        for rec in self:
+            if rec.insurance_amount:
+                rec.company_portion = rec.insurance_amount * (company_contribution / 100)
+            else:
+                rec.company_portion = 0
+
+
+    @api.depends('insurance_amount', 'employee_id', 'employee_id.age', 'employee_id.birthday')
+    def _get_employee_portion(self):
+        social_insurance_config = self.env['social.insurance.config'].search([
+            ('age_from', '<=', self.employee_id.age),
+            ('age_to', '>=', self.employee_id.age),
+        ], limit=1)
+        employee_contribution = social_insurance_config.employee_contribution if employee_contribution else 0
+        for rec in self:
+            if rec.insurance_amount:
+                rec.employee_portion = rec.insurance_amount * (employee_contribution / 100)
+            else:
+                rec.employee_portion = 0
 
     @api.depends('exit_date')
     def _get_in_active(self):

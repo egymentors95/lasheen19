@@ -10,6 +10,8 @@ Social Insurance    """,
     "license": "LGPL-3",
     "depends": [
         "hr",
+        "medical_insurance",
+        "hr_payroll",
     ],
     "data": [
         "security/ir.model.access.csv",
@@ -18,6 +20,7 @@ Social Insurance    """,
         "views/social_category_views.xml",
         "views/hr_employee_views.xml",
         "views/social_report_view.xml",
+        "views/social_insurance_config_views.xml",
         "reports/social_insurance_template_views.xml",
         "reports/action_report_views.xml",
 

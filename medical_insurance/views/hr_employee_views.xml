@@ -8,6 +8,10 @@
         <field name="inherit_id" ref="hr.view_employee_form"/>
         <field name="arch" type="xml">
 
+
+                <xpath expr="//div[@name='div_km_home_work']" position="after">
+                <field name="age"/>
+            </xpath>
             <xpath expr="//notebook" position="inside">
                 <page string="Medical Insurance" name="medical_insurance">
                     <div>
