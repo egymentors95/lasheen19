@@ -12,7 +12,7 @@
         "views/hr_employee_views.xml",
         "views/payroll_method_views.xml",
         "views/hr_payslip_views.xml",
-        "views/hr_payslip_line_views.xml",
+        # "views/hr_payslip_line_views.xml",
     ],
     "installable": True,
     "application": False,

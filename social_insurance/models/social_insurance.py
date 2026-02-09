@@ -50,7 +50,7 @@ class SocialInsurance(models.Model):
             ('age_from', '<=', self.employee_id.age),
             ('age_to', '>=', self.employee_id.age),
         ], limit=1)
-        employee_contribution = social_insurance_config.employee_contribution if employee_contribution else 0
+        employee_contribution = social_insurance_config.employee_contribution if social_insurance_config.employee_contribution else 0
         for rec in self:
             if rec.insurance_amount:
                 rec.employee_portion = rec.insurance_amount * (employee_contribution / 100)

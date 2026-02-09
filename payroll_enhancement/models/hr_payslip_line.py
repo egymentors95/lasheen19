@@ -13,3 +13,8 @@ class HrPayslipLine(models.Model):
     gross_wage = fields.Monetary(string='Gross Wage', related='slip_id.gross_wage', store=True)
     net_wage = fields.Monetary(string='Net Wage', related='slip_id.net_wage', store=True)
     state_display = fields.Selection(related='slip_id.state_display', string='Payslip State', store=True)
+    version_id = fields.Many2one(related='slip_id.version_id', store=True)
+    struct_id = fields.Many2one(related='slip_id.struct_id', store=True)
+    date_from = fields.Date(string='From', related="slip_id.date_from", store=True)
+    date_to = fields.Date(string='To', related="slip_id.date_to", store=True)
+
