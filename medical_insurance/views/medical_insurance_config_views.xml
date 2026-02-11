@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="medical_insurance_config_view_tree" model="ir.ui.view">
+        <field name="name">medical.insurance.config.view.tree</field>
+        <field name="model">medical.insurance.config</field>
+        <field name="arch" type="xml">
+            <list create="1" editable="bottom">
+                <field name="name"/>
+                <field name="age_from"/>
+                <field name="age_to"/>
+                <field name="company_share"/>
+                <field name="employee_share"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="medical_insurance_config_action" model="ir.actions.act_window">
+        <field name="name">Medical Insurance Configurations</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">medical.insurance.config</field>
+        <field name="view_mode">list</field>
+    </record>
+
+
+    <menuitem id="medical_insurance_config_menuitem" name="Medical Insurance Config"
+              parent="medical_insurance.menu_medical_insurance_root"
+              action="medical_insurance.medical_insurance_config_action"
+              sequence="800"/>
+
+
+</odoo>

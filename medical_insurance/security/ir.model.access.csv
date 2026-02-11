@@ -5,4 +5,6 @@ access_medical_network,access.medical.network,model_medical_network,,1,1,1,1
 access_medical_relation,access.medical.relation,model_medical_relation,,1,1,1,1
 access_medical_insurance,access.medical.insurance,model_medical_insurance,,1,1,1,1
 access_family_insurance,access.family.insurance,model_family_insurance,,1,1,1,1
+access_medical_insurance_config,access.medical.insurance.config,model_medical_insurance_config,,1,1,1,1
+access_family_insurance_config,access.family.insurance.config,model_family_insurance_config,,1,1,1,1
 

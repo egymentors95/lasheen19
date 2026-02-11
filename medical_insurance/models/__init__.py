@@ -5,3 +5,5 @@ from . import medical_relation
 from . import medical_insurance
 from . import family_insurance
 from . import hr_employee
+from . import medical_insurance_config
+from . import family_insurance_config

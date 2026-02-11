@@ -9,7 +9,7 @@
         <field name="arch" type="xml">
 
 
-                <xpath expr="//div[@name='div_km_home_work']" position="after">
+            <xpath expr="//div[@name='div_km_home_work']" position="after">
                 <field name="age"/>
             </xpath>
             <xpath expr="//notebook" position="inside">
@@ -29,6 +29,7 @@
                             <field name="insurance_category_id" optional="show"/>
                             <field name="insurance_start_date" optional="show"/>
                             <field name="insurance_end_date" optional="show"/>
+                            <field name="insurance_amount" optional="show"/>
                             <field name="company_share" optional="show"/>
                             <field name="employee_share" optional="show"/>
                             <field name="monthly_contribution" optional="show"/>
@@ -52,6 +53,7 @@
                             <field name="insurance_category_id" optional="show"/>
                             <field name="insurance_start_date" optional="show"/>
                             <field name="insurance_end_date" optional="show"/>
+                            <field name="insurance_amount" optional="show"/>
                             <field name="company_share" optional="show"/>
                             <field name="employee_share" optional="show"/>
                             <field name="monthly_contribution" optional="show"/>

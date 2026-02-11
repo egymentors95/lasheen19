@@ -18,14 +18,44 @@ class MedicalInsurance(models.Model):
     insurance_category_id = fields.Many2one(comodel_name='insurance.category', string='Insurance Category')
     insurance_start_date = fields.Date(string='Insurance Start Date')
     insurance_end_date = fields.Date(string='Insurance End Date')
-    company_share = fields.Float(string='Company Share')
-    employee_share = fields.Float(string='Employee Share')
+    insurance_amount = fields.Monetary(string='Insurance Amount')
+    company_share = fields.Float(string='Company Share', compute='_get_company_share', store=True)
+    employee_share = fields.Float(string='Employee Share', compute='_get_employee_share', store=True)
     monthly_contribution = fields.Float(string='Monthly Contribution', compute='_get_monthly_contribution', store=True)
     company_discount = fields.Float()
     in_active = fields.Boolean(string='Active/In Active', compute='_get_in_active', store=True)
+    currency_id = fields.Many2one(string="Currency", related='company_id.currency_id', readonly=True)
 
     excel_file = fields.Binary('Excel File')
     excel_filename = fields.Char('Excel Filename')
+    
+    
+
+    @api.depends('insurance_amount', 'employee_id', 'employee_id.age', 'employee_id.birthday')
+    def _get_company_share(self):
+        medical_insurance_config = self.env['medical.insurance.config'].search([
+            ('age_from', '<=', self.employee_id.age),
+            ('age_to', '>=', self.employee_id.age),
+        ], limit=1)
+        company_contribution = medical_insurance_config.company_share if medical_insurance_config else 0
+        for rec in self:
+            if rec.insurance_amount:
+                rec.company_share = rec.insurance_amount * (company_contribution / 100)
+            else:
+                rec.company_share = 0
+
+    @api.depends('insurance_amount', 'employee_id', 'employee_id.age', 'employee_id.birthday')
+    def _get_employee_share(self):
+        medical_insurance_config = self.env['medical.insurance.config'].search([
+            ('age_from', '<=', self.employee_id.age),
+            ('age_to', '>=', self.employee_id.age),
+        ], limit=1)
+        company_contribution = medical_insurance_config.employee_share if medical_insurance_config else 0
+        for rec in self:
+            if rec.insurance_amount:
+                rec.employee_share = rec.insurance_amount * (company_contribution / 100)
+            else:
+                rec.employee_share = 0
 
     @api.depends('insurance_end_date')
     def _get_in_active(self):
