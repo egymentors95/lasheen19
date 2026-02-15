@@ -23,6 +23,10 @@
     </record>
 
 
+    <menuitem id="menu_family_insurance_root" name="Family Insurance" parent="hr.hr_menu_configuration"
+              sequence="1000"/>
+
+
     <menuitem id="family_insurance_config_menuitem" name="Family Insurance Config"
               parent="medical_insurance.menu_family_insurance_root"
               action="medical_insurance.family_insurance_config_action"

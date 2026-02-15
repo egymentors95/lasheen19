@@ -60,6 +60,8 @@
         </field>
     </record>
 
+
+
     <record id="family_insurance_action" model="ir.actions.act_window">
         <field name="name">Employee Medical Report</field>
         <field name="type">ir.actions.act_window</field>
