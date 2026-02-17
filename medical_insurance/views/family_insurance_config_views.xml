@@ -11,6 +11,7 @@
                 <field name="age_to"/>
                 <field name="company_share"/>
                 <field name="employee_share"/>
+                <field name="insurance_amount"/>
             </list>
         </field>
     </record>

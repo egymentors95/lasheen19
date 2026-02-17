@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+
+    <record id="inherit_hr_payslip_work_days_view_list" model="ir.ui.view">
+        <field name="name">inherit.hr.payslip.work.days.view.list</field>
+        <field name="model">hr.payslip.worked_days</field>
+        <field name="inherit_id" ref="hr_payroll.hr_payslip_work_days_view_list"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//list" position="inside">
+                <field name="work_location_id" optional="hide"/>
+                <field name="version_id" optional="hide"/>
+                <field name="struct_id" optional="hide"/>
+                <field name="date_from" optional="hide"/>
+                <field name="date_to" optional="hide"/>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

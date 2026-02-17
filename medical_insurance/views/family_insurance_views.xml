@@ -22,7 +22,7 @@
                 <field name="company_share" optional="show"/>
                 <field name="employee_share" optional="show"/>
                 <field name="monthly_contribution" optional="show"/>
-                <field name="company_discount" optional="show"/>
+<!--                <field name="company_discount" optional="show"/>-->
                 <field name="in_active" optional="show"/>
             </list>
         </field>

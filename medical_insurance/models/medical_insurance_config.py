@@ -10,3 +10,4 @@ class MedicalInsuranceConfig(models.Model):
     age_to = fields.Integer(string='Maximum Age')
     company_share= fields.Float(string='Company Share (%)')
     employee_share = fields.Float(string='Employee Share (%)')
+    insurance_amount = fields.Float(string='Insurance Amount')

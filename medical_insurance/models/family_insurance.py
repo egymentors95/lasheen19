@@ -22,20 +22,33 @@ class FamilyInsurance(models.Model):
     insurance_start_date = fields.Date(string='Insurance Start Date')
     insurance_end_date = fields.Date(string='Insurance End Date')
 
-    insurance_amount = fields.Monetary(string='Insurance Amount')
+    insurance_amount = fields.Monetary(string='Insurance Amount', compute='_get_insurance_amount', store=True, readonly=False)
     company_share = fields.Float(string='Company Share', compute='_get_company_share', store=True)
     employee_share = fields.Float(string='Employee Share', compute='_get_employee_share', store=True)
 
     monthly_contribution = fields.Float(string='Monthly Contribution', compute='_get_monthly_contribution', store=True)
-    company_discount = fields.Float()
+    # company_discount = fields.Float()
     excel_file = fields.Binary(string='Excel File')
     excel_filename = fields.Char(string='Excel Filename')
     in_active = fields.Boolean(string='Active/In Active', compute='_get_in_active', store=True)
     currency_id = fields.Many2one(string="Currency", related='company_id.currency_id', readonly=True)
 
+    @api.depends('employee_id')
+    def _get_insurance_amount(self):
+        for rec in self:
+            rec.insurance_amount = 0
+            if rec.employee_id and rec.employee_id.age:
+                config = self.env['family.insurance.config'].search([
+                    ('age_from', '<=', rec.employee_id.age),
+                    ('age_to', '>=', rec.employee_id.age),
+                ], limit=1)
+
+                if config:
+                    rec.insurance_amount = config.insurance_amount
+
     @api.depends('insurance_amount', 'employee_id', 'employee_id.age', 'employee_id.birthday')
     def _get_company_share(self):
-        medical_insurance_config = self.env['medical.insurance.config'].search([
+        medical_insurance_config = self.env['family.insurance.config'].search([
             ('age_from', '<=', self.employee_id.age),
             ('age_to', '>=', self.employee_id.age),
         ], limit=1)
@@ -43,12 +56,13 @@ class FamilyInsurance(models.Model):
         for rec in self:
             if rec.insurance_amount:
                 rec.company_share = rec.insurance_amount * (company_contribution / 100)
+
             else:
                 rec.company_share = 0
 
     @api.depends('insurance_amount', 'employee_id', 'employee_id.age', 'employee_id.birthday')
     def _get_employee_share(self):
-        medical_insurance_config = self.env['medical.insurance.config'].search([
+        medical_insurance_config = self.env['family.insurance.config'].search([
             ('age_from', '<=', self.employee_id.age),
             ('age_to', '>=', self.employee_id.age),
         ], limit=1)
@@ -135,8 +149,8 @@ class FamilyInsurance(models.Model):
             sheet.write(row,13, rec.company_share or 0, cell_format)
             sheet.write(row,14, rec.employee_share or 0, cell_format)
             sheet.write(row,15, rec.monthly_contribution or 0, cell_format)
-            sheet.write(row,16, rec.company_discount or 0, cell_format)
-            sheet.write(row,17, rec.in_active or 0, cell_format)
+            # sheet.write(row,16, rec.company_discount or 0, cell_format)
+            sheet.write(row,16, rec.in_active or 0, cell_format)
             row += 1
 
         workbook.close()
