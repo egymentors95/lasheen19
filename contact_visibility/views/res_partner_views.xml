@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- Inherit Form View to Modify it -->
+    <record id="allowed_users_view_partner_form" model="ir.ui.view">
+        <field name="name">allowed.users.view.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//notebook" position="inside">
+                <page string="Allowed Users">
+                    <group>
+                        <field name="allowed_user_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//field[@name='category_id']" position="after">
+                <field name="contact_type"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="allowed_partner_rule" model="ir.rule">
+        <field name="name">Allowed Partner Rules</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="domain_force">
+            ['|',
+            ('allowed_user_ids', '=', False),
+            ('allowed_user_ids', 'in', [user.id])
+            ]
+        </field>
+    </record>
+
+
+</odoo>

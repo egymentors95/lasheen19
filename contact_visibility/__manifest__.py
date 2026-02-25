@@ -1,0 +1,20 @@
+{
+    'name': 'Contact Visibility',
+    'version': '19.0.0.1.0',
+    'summary': 'Contact Visibility',
+    'description': 'Contact Visibility',
+    'author': 'LasheenTech',
+    'website': '',
+    'category': 'Contacts',
+    'depends': ['base', 'contacts', 'sale_management', 'sale', 'purchase', 'account', 'hr'],
+    'data': [
+        'views/res_partner_views.xml',
+        'views/res_users_views.xml',
+        'views/sale_order_views.xml',
+        'views/purchase_order_views.xml',
+        'views/account_move_views.xml',
+    ],
+    'installable': True,
+    'application': False,
+    'auto_install': False,
+}

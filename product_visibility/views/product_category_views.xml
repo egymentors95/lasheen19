@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- Inherit Form View to Modify it -->
+    <record id="allowed_users_product_category_form_view" model="ir.ui.view">
+        <field name="name">allowed.users.product.category.form.view</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='parent_id']" position="after">
+                <field name="allowed_user_ids" widget="many2many_tags" options="{'no_create': True}"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="product_category_visibility_rule" model="ir.rule">
+        <field name="name">Product category Visibility By Allowed Users</field>
+        <field name="model_id" ref="product.model_product_category"/>
+        <field name="domain_force">
+            ['|',
+            ('allowed_user_ids', '=', False),
+            ('allowed_user_ids', 'in', [user.id])
+            ]
+        </field>
+    </record>
+
+
+</odoo>

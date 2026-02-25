@@ -34,7 +34,7 @@ class MedicalInsurance(models.Model):
         for rec in self:
             rec.insurance_amount = 0
             if rec.employee_id and rec.employee_id.age:
-                config = self.env['family.insurance.config'].search([
+                config = self.env['medical.insurance.config'].search([
                     ('age_from', '<=', rec.employee_id.age),
                     ('age_to', '>=', rec.employee_id.age),
                 ], limit=1)
