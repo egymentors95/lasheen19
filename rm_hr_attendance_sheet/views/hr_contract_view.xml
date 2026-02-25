@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--
+        In Odoo 19 hr.contract was replaced by hr.version.
+        The attendance policy and auto-sheet fields are added directly to the
+        employee form (which surfaces hr.version / related fields).
+    -->
+    <record id="hr_employee_form_attend_policy" model="ir.ui.view">
+        <field name="name">hr.employee.form.att.policy</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='structure_type_id']" position="after">
+                <field name="att_policy_id"/>
+                <field name="auto_attendance_sheet"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
