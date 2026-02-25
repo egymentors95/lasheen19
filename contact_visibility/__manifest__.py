@@ -8,6 +8,7 @@
     'category': 'Contacts',
     'depends': ['base', 'contacts', 'sale_management', 'sale', 'purchase', 'account', 'hr'],
     'data': [
+        'security/security_viewx.xml',
         'views/res_partner_views.xml',
         'views/res_users_views.xml',
         'views/sale_order_views.xml',

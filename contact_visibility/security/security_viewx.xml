@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- Security Category -->
+    <record id="module_category_contact" model="res.groups.privilege">
+        <field name="name">Contacts</field>
+        <field name="description">Contact Access Management</field>
+        <field name="sequence">30</field>
+    </record>
+
+    <!-- Contact User -->
+    <record id="contact_user_group" model="res.groups">
+        <field name="name">User</field>
+        <field name="privilege_id" ref="contact_visibility.module_category_contact"/>
+    </record>
+
+    <!-- Contact Manager -->
+    <record id="contact_manager_group" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="privilege_id" ref="contact_visibility.module_category_contact"/>
+        <field name="implied_ids" eval="[(4, ref('contact_user_group'))]"/>
+    </record>
+
+</odoo>

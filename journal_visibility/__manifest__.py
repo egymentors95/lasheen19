@@ -9,6 +9,7 @@
     'category': 'Accounting',
     'depends': ['base', 'account'],
     'data': [
+        'security/security_viewx.xml',
         'views/account_journal_views.xml',
         'views/res_users_views.xml',
     ],

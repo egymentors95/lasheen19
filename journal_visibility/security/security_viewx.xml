@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- Security Category -->
+    <record id="module_category_journal" model="res.groups.privilege">
+        <field name="name">journals</field>
+        <field name="description">journal Access Management</field>
+        <field name="sequence">30</field>
+    </record>
+
+    <!-- journal User -->
+    <record id="journal_user_group" model="res.groups">
+        <field name="name">User</field>
+        <field name="privilege_id" ref="journal_visibility.module_category_journal"/>
+    </record>
+
+    <!-- journal Manager -->
+    <record id="journal_manager_group" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="privilege_id" ref="journal_visibility.module_category_journal"/>
+        <field name="implied_ids" eval="[(4, ref('journal_user_group'))]"/>
+    </record>
+
+</odoo>
