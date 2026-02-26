@@ -11,8 +11,8 @@
                 <attribute name="invisible">1</attribute>
             </xpath>
             <xpath expr="//field[@name='partner_id']" position="after">
-                <field name="partner_id" invisible="move_type not in ('out_invoice', 'out_refund', 'out_receipt')" domain="[('contact_type', '=', 'customer')]"/>
-                <field name="partner_id" invisible="move_type not in ('in_invoice', 'in_refund', 'in_receipt')" domain="[('contact_type', '=', 'vendor')]"/>
+                <field name="partner_id" invisible="move_type not in ('out_invoice', 'out_refund', 'out_receipt')" domain="[('is_customer', '=', True)]"/>
+                <field name="partner_id" invisible="move_type not in ('in_invoice', 'in_refund', 'in_receipt')" domain="[('is_vendor', '=', True)]"/>
             </xpath>
         </field>
     </record>

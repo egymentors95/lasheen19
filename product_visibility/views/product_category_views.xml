@@ -15,7 +15,7 @@
         </field>
     </record>
 
-    <record id="product_category_visibility_rule" model="ir.rule">
+    <record id="product_category_visibility_rule_user" model="ir.rule">
         <field name="name">Product category Visibility By Allowed Users</field>
         <field name="model_id" ref="product.model_product_category"/>
         <field name="domain_force">
@@ -24,6 +24,14 @@
             ('allowed_user_ids', 'in', [user.id])
             ]
         </field>
+        <field name="groups" eval="[(4, ref('product_visibility.category_user_group'))]"/>
+    </record>
+
+    <record id="product_category_visibility_rule_manager" model="ir.rule">
+        <field name="name">Product category Visibility By Allowed Manager</field>
+        <field name="model_id" ref="product.model_product_category"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('product_visibility.category_manager_group'))]"/>
     </record>
 
 

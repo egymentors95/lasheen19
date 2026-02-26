@@ -8,6 +8,7 @@
     "category": "Product",
     "depends": ["base", "product", "stock"],
     "data": [
+        "security/security_viewx.xml",
         "views/product_category_views.xml",
         "views/res_users_views.xml",
         "views/product_template_views.xml",

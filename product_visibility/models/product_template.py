@@ -12,6 +12,6 @@ class ProductTemplate(models.Model):
     def _compute_allowed_user_ids(self):
         for product in self:
             if product.is_category_visibility:
-                product.allowed_user_ids = False
+                continue
             else:
                 product.allowed_user_ids = product.categ_id.allowed_user_ids if product.categ_id else False

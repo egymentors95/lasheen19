@@ -9,7 +9,7 @@
         <field name="arch" type="xml">
 
             <xpath expr="//field[@name='address_id']" position="attributes">
-                <attribute name="domain">[('contact_type', '=', 'employee')]</attribute>
+                <attribute name="domain">[('is_employee', '=', True)]</attribute>
             </xpath>
 
         </field>
