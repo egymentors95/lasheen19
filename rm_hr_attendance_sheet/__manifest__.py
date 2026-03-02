@@ -31,6 +31,7 @@
         'security/rule.xml',
         'wizard/change_att_data_view.xml',
         'views/hr_attendance_sheet_view.xml',
+        'views/hr_attendance_views.xml',
         'views/hr_attendance_policy_view.xml',
         'views/hr_contract_view.xml',
         'views/hr_public_holiday_view.xml',

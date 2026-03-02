@@ -125,11 +125,10 @@ class ResourceCalendar(models.Model):
         required_tz = tz
 
         resources_list = list(resources) + [self.env['resource.resource']]
-        resource_ids = [r.id for r in resources_list]
         domain = domain if domain is not None else []
+        # resource.calendar.attendance has no resource_id field (only calendar_id)
         domain = expression.AND([domain, [
             ('calendar_id', '=', self.id),
-            ('resource_id', 'in', resource_ids),
             ('display_type', '=', False),
         ]])
 
@@ -153,11 +152,13 @@ class ResourceCalendar(models.Model):
                     cache_dates[(tz, end_dt)] = end
 
                 start = start.date()
-                if attendance.date_from:
-                    start = max(start, attendance.date_from)
+                date_from = getattr(attendance, 'date_from', None)
+                date_to = getattr(attendance, 'date_to', None)
+                if date_from:
+                    start = max(start, date_from)
                 until = end.date()
-                if attendance.date_to:
-                    until = min(until, attendance.date_to)
+                if date_to:
+                    until = min(until, date_to)
                 if attendance.week_type:
                     start_week_type = self.env['resource.calendar.attendance'].get_week_type(start)
                     if start_week_type != int(attendance.week_type):
@@ -174,7 +175,7 @@ class ResourceCalendar(models.Model):
                 for day in days:
                     # We need to exclude incorrect days according to re-defined start previously
                     # with weeks=-1 (Note: until is correctly handled)
-                    if (self.two_weeks_calendar and attendance.date_from and attendance.date_from > day.date()):
+                    if (self.two_weeks_calendar and date_from and date_from > day.date()):
                         continue
                     # attendance hours are interpreted in the resource's timezone
                     hour_from = attendance.hour_from
