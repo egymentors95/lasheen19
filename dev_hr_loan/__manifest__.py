@@ -11,7 +11,7 @@
 
 {
     'name': 'Employee Loan Management | HR Loan Process Employee',
-    'version': '19.0',
+    'version': '19.0.0.1.0',
     'sequence': 1,
     'category': 'Human Resources',
     'description':

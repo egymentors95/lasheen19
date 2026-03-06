@@ -3,7 +3,7 @@
 
 {
     'name': 'POS Product Auto Discount',
-    'version': '18.0.0.1.0',
+    'version': '19.0.0.1.0',
     'category': 'Point of Sale',
     'summary': 'POS Auto Discount on point of sale auto discount on pos product auto discount on point of sales auto discount apply automatic discount on pos discount apply product discount on pos apply product discount on point of sale product discount apply pos discount',
     'description' :"""
