@@ -61,8 +61,7 @@ In addition to all these features, the Employee Loan Management app provides eas
 
     """,
     'summary': 'employee loan management payroll management employee loan easy process deduction from payslip loan deduction from payslip auto payslip payslip management hr loan management approval loan approval flow employee loan request approval loan management all in one loan management all in one employee all in one hrms loan outstanding letter',
-    'depends': ['hr_payroll','account','account_accountant'],
-#    hr_payroll_account
+    'depends': ['hr_payroll','account','account_accountant', 'hr'],
     'data': [
         'security/ir.model.access.csv',
         'security/security.xml',
