@@ -1,0 +1,15 @@
+
+12 December 2025 : RVO
+------------------------
+
+v 19.0.1.0
+
+   * Module migrated
+      - changed Xpath (hr.employee [view])
+      - changed paperformat_id & binding_id (report-menu)
+      - removed group inside all filters
+      - changed demo-data ids (type_id ,unpaid_work_entry_type_ids)
+      - set up auto-scroll
+      
+--------------------------
+ ============================
